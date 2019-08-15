@@ -1,0 +1,39 @@
+
+.card-function {
+
+	padding: 30rpx 30rpx 0 30rpx;
+}
+.card-function .item {}
+.card-content {
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	border-bottom: 1px solid #dbdbdb;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+}
+.card-title {
+	font-size: 70rpx;
+	margin-top: 20rpx;
+	margin-left: 20rpx;
+}
+.card-control {
+	padding: 20rpx;
+}
+.card-id {
+	padding: 10rpx;
+}
+.card-bg {
+
+	padding: 10rpx;
+	border-radius: 20rpx 20rpx;
+	min-height: 300rpx;
+	background-color: #ffffff;
+}
+

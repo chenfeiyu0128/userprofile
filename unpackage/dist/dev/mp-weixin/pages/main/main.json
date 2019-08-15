@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "登录模板",
+  "usingComponents": {
+    "userprofile": "/components/userprofile"
+  }
+}
