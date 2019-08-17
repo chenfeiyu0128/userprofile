@@ -163,7 +163,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12); //
 //
 //
 //
-var userprofile = function userprofile() {return __webpack_require__.e(/*! import() | components/userprofile */ "components/userprofile").then(__webpack_require__.bind(null, /*! ../../components/userprofile.vue */ 67));};var _default = { components: { userprofile: userprofile }, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'userName']), onLoad: function onLoad() {// 	if (!this.hasLogin) {
+var userprofile = function userprofile() {return __webpack_require__.e(/*! import() | components/userprofile */ "components/userprofile").then(__webpack_require__.bind(null, /*! ../../components/userprofile.vue */ 48));};var _default = { components: { userprofile: userprofile }, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'userName']), onLoad: function onLoad() {// 	if (!this.hasLogin) {
     // 		uni.showModal({
     // 			title: '未登录',
     // 			content: '您未登录，需要登录后才能继续',

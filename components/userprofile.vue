@@ -6,9 +6,9 @@
 					<view>您好</view>
 					<text>{{userInfo.nickname}}</text>
 				</view>
-				<view class="padding text-xl text-cut">
+				<view class="padding ">
 					<view>当前身份</view>
-					<text>
+					<text class="text-cut">
 						{{level[getValidData]['text']}}
 						<!-- {{user.isvalid==true?'认证用户':'访客'}} -->
 					</text>
@@ -18,7 +18,7 @@
 				</view>
 			</view>
 			<view class="card-function flex justify-around">
-				<block v-if="isvalid">
+				<block v-if="getValidData==2">
 					<view v-for="(item,index) in data3" class="item">
 						<text :class="'cuIcon-'+item.icon"></text>
 						{{item.text}}
@@ -26,7 +26,7 @@
 				</block>
 				<block v-else>
 
-					<view @click="toValid()" class="item flex justify-center">
+					<view @click="toValid(level[getValidData]['path'])" class="item flex justify-center">
 						<text class="cuIcon-profile margin-right-xs"></text>
 						{{level[getValidData]['validtext']}}
 					</view>
@@ -47,8 +47,24 @@
 
 	export default {
 		computed: {
-			...mapState(['userInfo', 'point', 'isTencent']),
+			...mapState(['validType', 'userInfo', 'isValid', 'isTencent']),
 			...mapGetters(['getValidData']),
+			data3: function() {
+				console.log('validType', this.userInfo, this.validType)
+				var userAuthData = { school: String, sex: String }
+				if (this.isValid) {
+					userAuthData['sex'] = this.userInfo.gender == 1 ? '男' : '女'
+					userAuthData['school'] = this.userInfo.userAuthData['school']['result'][1]
+				}
+
+				return [{
+					icon: 'friendfill',
+					text: '学校：' + userAuthData['school']
+				}, {
+					icon: 'peoplefill',
+					text: '性别：' + userAuthData['sex']
+				}]
+			},
 		},
 		props: {
 			user: {
@@ -62,23 +78,9 @@
 		data() {
 			// '访客','微信认证','学生认证'
 			return {
-				level: [{ text: '访客', validtext: '点我登录' },
-					{ text: '微信登录', validtext: '点我认证' },
-					{ text: '学生认证', validtext: '点我登录' }
-				],
-				data3: [{
-						icon: 'icon',
-						text: '学历'
-					},
-					{
-						icon: 'friendfill',
-						text: '学校'
-					},
-					{
-						icon: 'peoplefill',
-						text: '性别'
-					},
-
+				level: [{ text: '访客', validtext: '点我登录', 'path': '../login/login' },
+					{ text: '微信登录', validtext: '学生认证', 'path': '../reg/reg' },
+					{ text: '学生', validtext: '学生认证', 'path': '../reg/reg' },
 				],
 				screenWidth: this.screenWidth,
 				screenHeight: this.screenHeight,
@@ -87,14 +89,24 @@
 			}
 		},
 		mounted() {
-			console.log(this.screenWidth)
+			console.log('mouted')
+			var that = this
+			// setTimeout(function() {
+			// 	that.$forceUpdate()
+			// }, 2000);
+		},
+		updated() {
+			var that = this
+
+			console.log('updated')
 		},
 		methods: {
-			toValid() {
-				console.log('tovalid')
+			toValid(path) {
+				console.log('tovalid', )
+
 				uni.navigateTo({
-											url: '../login/login'
-										});
+					url: path + '?regtype=reg&url=/pages/home/school'
+				})
 			}
 		},
 	}
